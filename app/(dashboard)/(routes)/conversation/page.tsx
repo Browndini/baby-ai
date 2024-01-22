@@ -93,7 +93,7 @@ export default function ConversationPage() {
                       <Input
                         disabled={isLoading}
                         {...field}
-                        placeholder="is my baby fat?"
+                        placeholder="is my baby eating enough?"
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent "
                       />
                     </FormControl>
