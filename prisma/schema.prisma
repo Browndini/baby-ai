@@ -12,11 +12,20 @@ generator client {
 }
 
 model UserApiLimit {
-  id        Int     @id @default(autoincrement())
-  userId    String @unique
+  id        String    @id @default(cuid())
+  userId    String    @unique
   apiName   String
-  apiLimit  Int @default(5)
-  count     Int @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  apiLimit  Int       @default(5)
+  count     Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model UserSubscription {
+  id                      String    @id @default(cuid())
+  userId                  String    @unique
+  stripeCustomerId        String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId    String?   @unique @map("stripe_subscription_id")
+  stripePriceId           String?   @map("stripe_price_id")
+  stripeCurrentPeriodEnd  DateTime? @map("stripe_current_period_end")
 }

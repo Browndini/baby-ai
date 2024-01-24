@@ -13,8 +13,8 @@ export const ModalProvider = ({  }) => {
   if (!isMounted) return null;
 
   return (
-    <div className='h-full'>
+    <>
       <ProModal/>
-    </div>
+    </>
   )
 }

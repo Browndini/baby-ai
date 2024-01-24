@@ -74,4 +74,4 @@ export const getApiLimit = async () => {
     return 0;
   }
   return userApiLimit.count;
-}
+};

@@ -1,7 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
-import MobileSidebar from "./mobile-sidebar";
-import { LucideIcon, LucideProps } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface LoaderProps {
