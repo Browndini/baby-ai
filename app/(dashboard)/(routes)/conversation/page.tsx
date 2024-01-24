@@ -2,11 +2,8 @@
 import * as z from "zod";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@clerk/nextjs";
-import { ArrowRight, MessageSquare, Music } from "lucide-react";
-import Image from "next/image";
+import { MessageSquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";

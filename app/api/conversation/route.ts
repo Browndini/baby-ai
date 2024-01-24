@@ -1,19 +1,13 @@
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-// import Configuration from "openai";
-// import OpenAiApi from "openai";
 import OpenAI from "openai";
 
-// const config = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
 const openai = new OpenAI({
-  // organization: 'org-iulQlpZOK0zkFj1xX9mXoAW7',
   organization: "org-KLsq8QVyYFQMb6VV5L5Bc9Il",
   apiKey: process.env.OPENAI_API_KEY,
 });
-// const openai = new OpenAiApi(config);
 
 export async function POST(req: Request) {
   try {
@@ -36,20 +30,22 @@ export async function POST(req: Request) {
     }
 
     const freetrial = await checkApiLimit();
+    const subscribed = await checkSubscription();
 
-    if (!freetrial) {
+    if (!freetrial && !subscribed) {
       return new NextResponse("You have exceeded the free trial limit.", {
         status: 403,
       });
     }
-    // console.log('the one: ',userId, body)
 
     const stream = await openai.chat.completions.create({
       model: "gpt-3.5-turbo-1106",
       messages,
     });
 
-    await increaseApiLimit("conversation");
+    if (!subscribed) {
+      await increaseApiLimit("conversation");
+    }
 
     return NextResponse.json(stream.choices[0].message);
   } catch (e) {

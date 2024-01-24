@@ -1,10 +1,7 @@
 "use client";
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { UserButton } from '@clerk/nextjs'
-import { ArrowRight, MessageSquare, Music } from 'lucide-react';
-import Image from 'next/image'
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const tools = [
@@ -15,13 +12,6 @@ const tools = [
     bgColor: 'bg-violet-500/10',
     href: '/conversation',
   },
-  {
-    label: 'Music Generation',
-    icon: Music,
-    color:'text-emerald-500',
-    bgColor: 'bg-emerald-500/10',
-    href: '/music',
-  }
 ]
 export default function DashboardPage() {
   const router = useRouter();

@@ -1,10 +1,5 @@
-import { UserButton, useUser } from "@clerk/nextjs";
-import MobileSidebar from "./mobile-sidebar";
-import { LucideIcon, LucideProps } from "lucide-react";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-
 
 export default function UserAvatar() {
   const { user } = useUser();
@@ -17,6 +12,5 @@ export default function UserAvatar() {
         {user?.lastName?.charAt(0)}
       </AvatarFallback>
     </Avatar>
-
   );
 }
